@@ -7,7 +7,7 @@ Recipe for creating and updating security groups programmatically.
 
 import collections
 
-import boto3
+import boto
 
 
 # Follow instruction at http://www.datastax.com/docs/1.0/install/install_ami
