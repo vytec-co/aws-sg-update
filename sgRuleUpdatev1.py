@@ -9,6 +9,8 @@ port_no = int(raw_port_no)
 print("Entered,", port_no,"\b!")
 ipAddress = input("Enter Ip address(format:- 0.0.0.0/0) to add into security Group rule:- ")
 print("Entered,", ipAddress,"\b!")
+description = input("Enter Description to add into security Group rule:- ")
+print("Entered,", description,"\b!")
 #print(response)
 for i in response['SecurityGroups']:
     #print("Security Group Name: "+i['GroupName'])
@@ -37,7 +39,7 @@ for i in response['SecurityGroups']:
                             {'IpProtocol': 'tcp',
                             'FromPort': port_no,
                             'ToPort': port_no,
-                            'IpRanges': [{'CidrIp': ipAddress, 'Description' : 'update descrioptiin'}]}
+                            'IpRanges': [{'CidrIp': ipAddress, 'Description' : description}]}
                         ])
                     ipSet.add(ipAddress)
                 except Exception:
@@ -55,7 +57,7 @@ for i in response['SecurityGroups']:
                     {'IpProtocol': 'tcp',
                     'FromPort': port_no,
                     'ToPort': port_no,
-                    'IpRanges': [{'CidrIp': ipAddress, 'Description' : 'update descrioptiin'}]}
+                    'IpRanges': [{'CidrIp': ipAddress, 'Description' : description}]}
                 ])
             ipSet.add(ipAddress)
             print("ip rules are:")
