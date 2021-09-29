@@ -2,12 +2,14 @@ import boto3
 ipSet = set()
 ec2 = boto3.client('ec2',region_name='us-east-2')
 response = ec2.describe_security_groups()
+securityGroup = input("Enter security Group Name:- ")
+print("Entered,", securityGroup,"\b!")
 ipAddress = input("Enter Ip address(format:- 0.0.0.0/0) to add into security Group rule:- ")
 print("Entered,", ipAddress,"\b!")
 #print(response)
 for i in response['SecurityGroups']:
     #print("Security Group Name: "+i['GroupName'])
-    if i['GroupName'] == 'testgroup':
+    if i['GroupName'] == securityGroup:
        print("Security Group Name: "+i['GroupName'])
        print("The Ingress rules are as follows: ")
        for j in i['IpPermissions']:
