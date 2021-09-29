@@ -4,6 +4,9 @@ ec2 = boto3.client('ec2',region_name='us-east-2')
 response = ec2.describe_security_groups()
 securityGroup = input("Enter security Group Name:- ")
 print("Entered security group ,", securityGroup,"\b!")
+raw_port_no = input("Enter port number to add into security Group rule:- ")
+port_no = int(raw_port_no)
+print("Entered,", port_no,"\b!")
 ipAddress = input("Enter Ip address(format:- 0.0.0.0/0) to add into security Group rule:- ")
 print("Entered,", ipAddress,"\b!")
 #print(response)
@@ -16,7 +19,7 @@ for i in response['SecurityGroups']:
           #print("IP Protocol: "+j['IpProtocol'])
           try:
            # print("PORT: "+str(j['FromPort']))
-            if str(j['FromPort']) == '80':
+            if str(j['FromPort']) == str(port_no):
                print("PORT: "+str(j['FromPort']))
                for k in j['IpRanges']:
                  # print("IP Ranges: "+k['CidrIp'])
@@ -31,8 +34,8 @@ for i in response['SecurityGroups']:
                     GroupId=i['GroupId'],
                     IpPermissions=[
                         {'IpProtocol': 'tcp',
-                        'FromPort': 80,
-                        'ToPort': 80,
+                        'FromPort': port_no,
+                        'ToPort': port_no,
                         'IpRanges': [{'CidrIp': ipAddress}]}
                     ])
                 ipSet.add(ipAddress)
