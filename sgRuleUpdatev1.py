@@ -37,7 +37,7 @@ for i in response['SecurityGroups']:
                             {'IpProtocol': 'tcp',
                             'FromPort': port_no,
                             'ToPort': port_no,
-                            'IpRanges': [{'CidrIp': ipAddress}]}
+                            'IpRanges': [{'CidrIp': ipAddress, 'Description' : 'update descrioptiin'}]}
                         ])
                     ipSet.add(ipAddress)
                 except Exception:
@@ -55,7 +55,7 @@ for i in response['SecurityGroups']:
                     {'IpProtocol': 'tcp',
                     'FromPort': port_no,
                     'ToPort': port_no,
-                    'IpRanges': [{'CidrIp': ipAddress}]}
+                    'IpRanges': [{'CidrIp': ipAddress, 'Description' : 'update descrioptiin'}]}
                 ])
             ipSet.add(ipAddress)
             print("ip rules are:")
