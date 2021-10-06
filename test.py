@@ -1,0 +1,9 @@
+import boto3
+ipSet = set()
+client = boto3.client('ec2',region_name='us-east-2')
+response = client.describe_security_groups(
+    GroupName=[
+        'testgroup',
+    ],
+)
+print(response)
