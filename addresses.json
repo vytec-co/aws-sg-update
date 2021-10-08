@@ -8,6 +8,11 @@
         "ip_prefix": "12.0.0.0/8",
         "description": "test",
         "port": "443"
+    },
+    {
+        "ip_prefix": "12.0.0.0/8",
+        "description": "test",
+        "port": "80"
     }
 
 ]
