@@ -31,13 +31,9 @@ def add():
             for i in response['SecurityGroups']:
                 if len(i['IpPermissions']) != 0:
                     for j in i['IpPermissions']:
-                        try:
-                            if str(j['FromPort']) == str(port_no):
-                                for k in j['IpRanges']:
-                                    ipSet.add(k['CidrIp']) 
-                        except Exception:
-                            print("No value for ports and ip ranges available for this security group")
-                            continue
+                        if str(j['FromPort']) == str(port_no):
+                            for k in j['IpRanges']:
+                                ipSet.add(k['CidrIp']) 
                         if ipAddress not in ipSet:
                             print("ip not exist and updating the rule with "+ipAddress)
                             try:
