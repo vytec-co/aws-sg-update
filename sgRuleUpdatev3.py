@@ -22,7 +22,7 @@ def add():
         for item in json_data:
             ipAddress = item['ip_prefix']
             description = item['description']
-            port_no = 443
+            port_no = int(item['port'])
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
