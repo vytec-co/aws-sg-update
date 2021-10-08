@@ -16,7 +16,7 @@ def main():
             ],
         )
         eval(args.function)()
-    except Exception as e::
+    except Exception as e:
         print("Please enter parameter as add | update | list | delete"+str(e))
 
 def add():
