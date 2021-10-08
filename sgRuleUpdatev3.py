@@ -111,7 +111,7 @@ def list():
                             # print("IP Ranges: "+k['CidrIp'])
                             ipSet.add(k['CidrIp']) 
                 except Exception as e:
-                    print("No value for ports and ip ranges available for this security group"+e)
+                    print("No value for ports and ip ranges available for this security group"+str(e))
                     continue
     print(ipSet) 
 def delete():
