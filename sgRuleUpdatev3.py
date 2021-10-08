@@ -8,11 +8,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('function', type=str, help='function to call')
     args = parser.parse_args()
-    if (args != ""):
-        try:  
-            eval(args.function)()
-        except:
-          print("Please enter parameter as add | update | list | delete")
+    try:  
+        eval(args.function)()
+    except:
+        print("Please enter parameter as add | update | list | delete")
 
 def add():
     print("called add function")
@@ -93,6 +92,12 @@ def update():
 def list():
     print("called list function")
     ipSet = set()
+    client = boto3.client('ec2')
+    response = client.describe_security_groups(
+        GroupNames=[
+            'testgroup',
+        ],
+    )
     for i in response['SecurityGroups']:
         if len(i['IpPermissions']) != 0:
             for j in i['IpPermissions']:
