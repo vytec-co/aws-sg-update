@@ -15,7 +15,6 @@ def main():
         print("Please enter parameter as add | update | list | delete "+str(e))
 
 def add():
-    ipSet = set()
     json_data = []
     with open("addresses", "r") as my_file:
         for line in my_file:
@@ -29,6 +28,7 @@ def add():
                 ],
             )
             for i in response['SecurityGroups']:
+                ipSet = set()
                 if len(i['IpPermissions']) != 0:
                     for j in i['IpPermissions']:
                         if str(j['FromPort']) == str(port_no):
