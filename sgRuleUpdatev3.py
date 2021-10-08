@@ -33,7 +33,6 @@ def add():
                 if len(i['IpPermissions']) != 0:
                     for j in i['IpPermissions']:
                         if str(j['FromPort']) == str(port_no):
-                            print("PORT: "+str(j['FromPort']))
                             for k in j['IpRanges']:
                                 ipSet.add(k['CidrIp']) 
                         if ipAddress not in ipSet:
@@ -68,7 +67,7 @@ def add():
                     except Exception as e:
                         print("Given IP is not proper format and should be 0.0.0.0/0 format"+str(e))
                         continue    
-            print("sg rules updated")
+        print("sg rules updated")
 
 def update():
     print("called update function")
