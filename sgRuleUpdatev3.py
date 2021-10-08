@@ -12,7 +12,7 @@ def main():
     try:  
         eval(args.function)()
     except Exception as e:
-        print("Please enter parameter as add | update | list | delete"+str(e))
+        print("Please enter parameter as add | update | list | delete "+str(e))
 
 def add():
     ipSet = set()
@@ -49,7 +49,7 @@ def add():
                                 ipSet.add(ipAddress)
                                 print("sg rule updated - "+str(ipAddress))
                             except Exception as e:
-                                print("Given IP is not proper format and should be 0.0.0.0/0 format"+str(e))
+                                print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
                                 continue
                         else:
                             print("ip already exist:"+ipAddress)      
@@ -66,7 +66,7 @@ def add():
                             ])
                         ipSet.add(ipAddress)
                     except Exception as e:
-                        print("Given IP is not proper format and should be 0.0.0.0/0 format"+str(e))
+                        print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
                         continue    
 
 def update():
