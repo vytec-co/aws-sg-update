@@ -16,8 +16,8 @@ def main():
             ],
         )
         eval(args.function)()
-    except:
-        print("Please enter parameter as add | update | list | delete")
+    except Exception as e::
+        print("Please enter parameter as add | update | list | delete"+str(e))
 
 def add():
     print("called add function")
@@ -44,7 +44,7 @@ def add():
                                     # print("IP Ranges: "+k['CidrIp'])
                                     ipSet.add(k['CidrIp']) 
                         except Exception as e:
-                            print("No value for ports and ip ranges available for this security group"+e)
+                            print("No value for ports and ip ranges available for this security group"+str(e))
                             continue
                         if ipAddress not in ipSet:
                             print("ip not exist and updating the rule with "+ipAddress)
