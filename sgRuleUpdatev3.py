@@ -102,17 +102,8 @@ def list():
     for i in response['SecurityGroups']:
         if len(i['IpPermissions']) != 0:
             for j in i['IpPermissions']:
-                #print("IP Protocol: "+j['IpProtocol'])
-                try:
-                # print("PORT: "+str(j['FromPort']))
-                    if str(j['FromPort']) == str(port_no):
-                        #print("PORT: "+str(j['FromPort']))
-                        for k in j['IpRanges']:
-                            # print("IP Ranges: "+k['CidrIp'])
-                            ipSet.add(k['CidrIp']) 
-                except Exception as e:
-                    print("No value for ports and ip ranges available for this security group"+str(e))
-                    continue
+                for k in j['IpRanges']:
+                    ipSet.add(k['CidrIp'])                
     print(ipSet) 
 def delete():
     print("called delete function")
