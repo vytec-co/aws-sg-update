@@ -1,6 +1,7 @@
 import argparse
 import sys
 import boto3
+import json
 def main():
     if (len(sys.argv)-1 == 0):
          print("Please enter parameter as add | update | list | delete")
