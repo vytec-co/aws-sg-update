@@ -74,7 +74,6 @@ def update():
     # add()
 
 def list():
-    ipSet = set()
     client = boto3.client('ec2')
     response = client.describe_security_groups(
         GroupNames=[
@@ -85,8 +84,7 @@ def list():
         if len(i['IpPermissions']) != 0:
             for j in i['IpPermissions']:
                 for k in j['IpRanges']:
-                    ipSet.add(k['CidrIp'])                
-    print(ipSet) 
+                    print(j['FromPort'] k['CidrIp'] k['Description'])                 
 def delete():
     print("called delete function")
 
