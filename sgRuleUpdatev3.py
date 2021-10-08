@@ -53,7 +53,7 @@ def add():
                                 print("sg rule updated - "+str(ipAddress))
                             except Exception as e:
                                 print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
-                                #continue
+                                continue
                         else:
                             print("ip already exist:"+ipAddress)      
                 else:
@@ -70,7 +70,7 @@ def add():
                         ipSet.add(ipAddress)
                     except Exception as e:
                         print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
-                        #continue    
+                        continue    
 
 def update():
     print("called update function")
