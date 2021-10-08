@@ -19,7 +19,7 @@ def add():
     json_data = []
     with open("addresses", "r") as my_file:
         for line in my_file:
-            port_no = line.split()[0]
+            port_no = int(line.split()[0])
             ipAddress = line.split()[1]
             description = line.split()[2]
             client = boto3.client('ec2')
