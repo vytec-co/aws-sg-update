@@ -9,6 +9,12 @@ def main():
     parser.add_argument('function', type=str, help='function to call')
     args = parser.parse_args()
     try:  
+        client = boto3.client('ec2')
+        response = client.describe_security_groups(
+            GroupNames=[
+                'testgroup',
+            ],
+        )
         eval(args.function)()
     except:
         print("Please enter parameter as add | update | list | delete")
@@ -26,12 +32,6 @@ def add():
             ipAddress = item['ip_prefix']
             description = item['description']
             port_no = 443
-            client = boto3.client('ec2')
-            response = client.describe_security_groups(
-                GroupNames=[
-                    'testgroup',
-                ],
-            )
             for i in response['SecurityGroups']:
                 if len(i['IpPermissions']) != 0:
                     for j in i['IpPermissions']:
@@ -92,12 +92,12 @@ def update():
 def list():
     print("called list function")
     ipSet = set()
-    client = boto3.client('ec2')
-    response = client.describe_security_groups(
-        GroupNames=[
-            'testgroup',
-        ],
-    )
+    # client = boto3.client('ec2')
+    # response = client.describe_security_groups(
+    #     GroupNames=[
+    #         'testgroup',
+    #     ],
+    # )
     for i in response['SecurityGroups']:
         if len(i['IpPermissions']) != 0:
             for j in i['IpPermissions']:
