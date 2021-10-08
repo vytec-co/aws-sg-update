@@ -47,6 +47,7 @@ def add():
                                         'IpRanges': [{'CidrIp': ipAddress, 'Description' : description}]}
                                     ])
                                 ipSet.add(ipAddress)
+                                print("sg rule updated - "+str(ipAddress))
                             except Exception as e:
                                 print("Given IP is not proper format and should be 0.0.0.0/0 format"+str(e))
                                 continue
@@ -67,7 +68,6 @@ def add():
                     except Exception as e:
                         print("Given IP is not proper format and should be 0.0.0.0/0 format"+str(e))
                         continue    
-        print("sg rules updated")
 
 def update():
     print("called update function")
