@@ -84,7 +84,9 @@ def list():
         if len(i['IpPermissions']) != 0:
             for j in i['IpPermissions']:
                 for k in j['IpRanges']:
-                    print(j['FromPort'] k['CidrIp'] k['Description'])                 
+                    print(j['FromPort'])
+                    print(k['CidrIp']) 
+                    print(k['Description'])                 
 def delete():
     print("called delete function")
 
