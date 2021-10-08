@@ -17,12 +17,11 @@ def main():
 def add():
     ipSet = set()
     json_data = []
-    with open('addresses.json') as json_file:
-        json_data = json.load(json_file)
-        for item in json_data:
-            ipAddress = item['ip_prefix']
-            description = item['description']
-            port_no = int(item['port'])
+    with open("addresses", "r") as my_file:
+        for line in my_file:
+            port_no = line.split()[0]
+            ipAddress = line.split()[1]
+            description = line.split()[2]
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
