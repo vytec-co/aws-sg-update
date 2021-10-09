@@ -103,7 +103,7 @@ def delete():
                     for j in i['IpPermissions']:
                         if str(j['FromPort']) == str(port_no):
                             for k in j['IpRanges']:
-                                ipSet.add(k['CidrIp']) 
+                                ipSet.add(k['CidrIp'])             
                     if ipAddress in ipSet:
                         print("ip exist and updating the rule with "+ipAddress)
                         try:
@@ -120,5 +120,7 @@ def delete():
                             continue
                     else:
                         print("ip address not exist:"+ipAddress)
+                else:
+                    print("ip address not exist:"+ipAddress)
 if __name__ == '__main__':
     main()
