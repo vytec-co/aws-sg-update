@@ -10,13 +10,13 @@ def main():
     parser.add_argument('function', type=str, help='function to call')
     args = parser.parse_args()
     try:  
-        eval(args.function)()
+        securityGroup = input("Enter security Group Name:- ")
+        print("Entered security group ,", securityGroup,"\b!")
+        eval(args.function)(securityGroup)
     except Exception as e:
         print("Please enter parameter as add | update | list | delete "+str(e))
 
-def add():
-    securityGroup = input("Enter security Group Name:- ")
-    print("Entered security group ,", securityGroup,"\b!")
+def add(securityGroup):
     with open("addresses", "r") as my_file:
         for line in my_file:
             port_no = int(line.split()[0])
