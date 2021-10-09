@@ -70,8 +70,8 @@ def add():
 
 def update():
     print("called update function")
-    # delete()
-    # add()
+    delete()
+    add()
 
 def list():
     client = boto3.client('ec2')
@@ -119,8 +119,8 @@ def delete():
                             print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
                             continue
                     else:
-                        print("ip address not exist:"+ipAddress)
+                        print("ip address not exist: "+ipAddress)
                 else:
-                    print("ip address not exist:"+ipAddress)
+                    print("ip address not exist: "+ipAddress)
 if __name__ == '__main__':
     main()
