@@ -51,7 +51,7 @@ def add():
                             print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
                             continue
                     else:
-                    print("ip already exist:"+ipAddress)      
+                        print("ip already exist:"+ipAddress)      
                 else:
                     try:
                         print("rule update started:"+ipAddress)
