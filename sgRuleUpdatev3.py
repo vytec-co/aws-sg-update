@@ -34,24 +34,24 @@ def add():
                         if str(j['FromPort']) == str(port_no):
                             for k in j['IpRanges']:
                                 ipSet.add(k['CidrIp']) 
-                        if ipAddress not in ipSet:
-                            print("ip not exist and updating the rule with "+ipAddress)
-                            try:
-                                data = client.authorize_security_group_ingress(
-                                    GroupId=i['GroupId'],
-                                    IpPermissions=[
-                                        {'IpProtocol': 'tcp',
-                                        'FromPort': port_no,
-                                        'ToPort': port_no,
-                                        'IpRanges': [{'CidrIp': ipAddress, 'Description' : description}]}
-                                    ])
-                                ipSet.add(ipAddress)
-                                print("sg rule updated - "+str(ipAddress))
-                            except Exception as e:
-                                print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
-                                continue
-                        else:
-                            print("ip already exist:"+ipAddress)      
+                    if ipAddress not in ipSet:
+                        print("ip not exist and updating the rule with "+ipAddress)
+                        try:
+                            data = client.authorize_security_group_ingress(
+                                GroupId=i['GroupId'],
+                                IpPermissions=[
+                                    {'IpProtocol': 'tcp',
+                                    'FromPort': port_no,
+                                    'ToPort': port_no,
+                                    'IpRanges': [{'CidrIp': ipAddress, 'Description' : description}]}
+                                ])
+                            ipSet.add(ipAddress)
+                            print("sg rule updated - "+str(ipAddress))
+                        except Exception as e:
+                            print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
+                            continue
+                    else:
+                    print("ip already exist:"+ipAddress)      
                 else:
                     try:
                         print("rule update started:"+ipAddress)
@@ -105,21 +105,21 @@ def delete():
                         if str(j['FromPort']) == str(port_no):
                             for k in j['IpRanges']:
                                 ipSet.add(k['CidrIp']) 
-                        if ipAddress in ipSet:
-                            print("ip not exist and updating the rule with "+ipAddress)
-                            try:
-                                data = client.revoke_security_group_ingress(
-                                    GroupId=i['GroupId'],
-                                    CidrIp=ipAddress,
-                                    IpProtocol='tcp',
-                                    FromPort=port_no,
-                                    ToPort=port_no
-                                )
-                                print("sg rule deleted - "+str(ipAddress))
-                            except Exception as e:
-                                print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
-                                continue
-                        else:
-                            print("ip address not exist:"+ipAddress)
+                    if ipAddress in ipSet:
+                        print("ip not exist and updating the rule with "+ipAddress)
+                        try:
+                            data = client.revoke_security_group_ingress(
+                                GroupId=i['GroupId'],
+                                CidrIp=ipAddress,
+                                IpProtocol='tcp',
+                                FromPort=port_no,
+                                ToPort=port_no
+                            )
+                            print("sg rule deleted - "+str(ipAddress))
+                        except Exception as e:
+                            print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
+                            continue
+                    else:
+                        print("ip address not exist:"+ipAddress)
 if __name__ == '__main__':
     main()
