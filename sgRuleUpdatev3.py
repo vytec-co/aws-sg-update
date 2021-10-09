@@ -111,10 +111,9 @@ def delete():
                                 data = client.revoke_security_group_ingress(
                                     GroupId=i['GroupId'],
                                     CidrIp=ipAddress,
-                                    GroupId=port_no,
                                     IpProtocol=protocol,
                                     FromPort=port_no,
-                                    ToPort=toport
+                                    ToPort=port_no
                                 )
                                 print("sg rule deleted - "+str(ipAddress))
                             except Exception as e:
