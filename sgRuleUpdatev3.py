@@ -87,6 +87,47 @@ def list():
                     print(j['FromPort'], k['CidrIp'], k['Description'])                 
 def delete():
     print("called delete function")
-
+    with open("addresses", "r") as my_file:
+        for line in my_file:
+            port_no = int(line.split()[0])
+            ipAddress = line.split()[1]
+            description = line.split()[2]
+            client = boto3.client('ec2')
+            response = client.describe_security_groups(
+                GroupNames=[
+                    'testgroup',
+                ],
+            )
+            for i in response['SecurityGroups']:
+                ipSet = set()
+                if len(i['IpPermissions']) != 0:
+                    for j in i['IpPermissions']:
+                        if str(j['FromPort']) == str(port_no):
+                            for k in j['IpRanges']:
+                                ipSet.add(k['CidrIp']) 
+                        if ipAddress in ipSet:
+                            print("ip not exist and updating the rule with "+ipAddress)
+                            try:
+                                data = client.revoke_security_group_ingress(
+                                    GroupId=i['GroupId'],
+                                    CidrIp=ipAddress,
+                                    GroupId=port_no,
+                                    IpProtocol=protocol,
+                                    FromPort=port_no,
+                                    ToPort=toport
+                                )
+                                print("sg rule deleted - "+str(ipAddress))
+                            except Exception as e:
+                                print("Given IP is not proper format and should be 0.0.0.0/0 format "+str(e))
+                                continue
+                        else:
+                            print("ip address not exist:"+ipAddress)
+    data = ec2.revoke_security_group_ingress(
+        CidrIp=cidr,
+        GroupId=group_id,
+        IpProtocol=protocol,
+        FromPort=fromport,
+        ToPort=toport
+        )
 if __name__ == '__main__':
     main()
