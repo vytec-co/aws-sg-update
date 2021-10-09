@@ -106,7 +106,7 @@ def delete():
                             for k in j['IpRanges']:
                                 ipSet.add(k['CidrIp']) 
                     if ipAddress in ipSet:
-                        print("ip not exist and updating the rule with "+ipAddress)
+                        print("ip exist and updating the rule with "+ipAddress)
                         try:
                             data = client.revoke_security_group_ingress(
                                 GroupId=i['GroupId'],
