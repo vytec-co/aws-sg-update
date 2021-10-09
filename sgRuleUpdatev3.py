@@ -74,6 +74,8 @@ def update():
     add()
 
 def list():
+    securityGroup = input("Enter security Group Name:- ")
+    print("Entered security group ,", securityGroup,"\b!")
     client = boto3.client('ec2')
     response = client.describe_security_groups(
         GroupNames=[
@@ -86,6 +88,8 @@ def list():
                 for k in j['IpRanges']:
                     print(j['FromPort'], k['CidrIp'], k['Description'])                 
 def delete():
+    securityGroup = input("Enter security Group Name:- ")
+    print("Entered security group ,", securityGroup,"\b!")
     with open("addresses", "r") as my_file:
         for line in my_file:
             port_no = int(line.split()[0])
