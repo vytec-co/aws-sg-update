@@ -69,7 +69,6 @@ def add():
                         continue    
 
 def update():
-    print("called update function")
     delete()
     add()
 
