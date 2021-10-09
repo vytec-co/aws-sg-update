@@ -86,7 +86,6 @@ def list():
                 for k in j['IpRanges']:
                     print(j['FromPort'], k['CidrIp'], k['Description'])                 
 def delete():
-    print("called delete function")
     with open("addresses", "r") as my_file:
         for line in my_file:
             port_no = int(line.split()[0])
