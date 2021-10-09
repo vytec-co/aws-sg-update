@@ -111,7 +111,7 @@ def delete():
                                 data = client.revoke_security_group_ingress(
                                     GroupId=i['GroupId'],
                                     CidrIp=ipAddress,
-                                    IpProtocol=protocol,
+                                    IpProtocol='tcp',
                                     FromPort=port_no,
                                     ToPort=port_no
                                 )
