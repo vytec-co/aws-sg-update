@@ -121,12 +121,5 @@ def delete():
                                 continue
                         else:
                             print("ip address not exist:"+ipAddress)
-    data = ec2.revoke_security_group_ingress(
-        CidrIp=cidr,
-        GroupId=group_id,
-        IpProtocol=protocol,
-        FromPort=fromport,
-        ToPort=toport
-        )
 if __name__ == '__main__':
     main()
