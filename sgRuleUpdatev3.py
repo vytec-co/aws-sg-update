@@ -15,7 +15,8 @@ def main():
         print("Please enter parameter as add | update | list | delete "+str(e))
 
 def add():
-    json_data = []
+    securityGroup = input("Enter security Group Name:- ")
+    print("Entered security group ,", securityGroup,"\b!")
     with open("addresses", "r") as my_file:
         for line in my_file:
             port_no = int(line.split()[0])
@@ -24,7 +25,7 @@ def add():
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
-                    'testgroup',
+                    securityGroup,
                 ],
             )
             for i in response['SecurityGroups']:
@@ -76,7 +77,7 @@ def list():
     client = boto3.client('ec2')
     response = client.describe_security_groups(
         GroupNames=[
-            'testgroup',
+            securityGroup,
         ],
     )
     for i in response['SecurityGroups']:
@@ -93,7 +94,7 @@ def delete():
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
-                    'testgroup',
+                    securityGroup,
                 ],
             )
             for i in response['SecurityGroups']:
