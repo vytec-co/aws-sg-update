@@ -21,7 +21,7 @@ def add(securityGroup):
         for line in my_file:
             port_no = int(line.split()[0])
             ipAddress = line.split()[1]
-            description = line.split()[2]
+            description = str(line.split()[2:])
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
@@ -90,7 +90,7 @@ def delete(securityGroup):
         for line in my_file:
             port_no = int(line.split()[0])
             ipAddress = line.split()[1]
-            description = line.split()[2]
+            description = str(line.split()[2:])
             client = boto3.client('ec2')
             response = client.describe_security_groups(
                 GroupNames=[
