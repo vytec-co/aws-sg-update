@@ -1,5 +1,4 @@
 foreach($line in Get-Content .\file.txt) {
-    if($line -match $regex){
-        # Work here
-    }
+     info=$(aws cloudformation describe-stacks --stack-name $line)
+     Write-Host $val
 }
